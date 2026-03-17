@@ -7,158 +7,81 @@
 
 <style>
 
+/* 기본 설정 */
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
 }
 
 body{
-background:#f5f6f8;
-color:#222;
+  background:#f5f6f8;
+  color:#222;
+
+  /* 🔥 핵심: 상단 메뉴 높이만큼 내려주기 */
+  padding-top:90px;
 }
 
 /* 상단 메뉴 */
-
 nav{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-background:#ffffff;
-border-bottom:1px solid rgba(0,0,0,0.08);
-z-index:1000;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:#ffffff;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  z-index:1000;
 }
 
 .nav-inner{
-max-width:1200px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 20px;
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  height:90px;
+  padding:0 20px;
 }
 
 .logo{
-font-size:22px;
-font-weight:bold;
-color:#c9a96e;
-text-decoration:none;
+  font-size:22px;
+  font-weight:bold;
+  color:#c9a96e;
+  text-decoration:none;
 }
 
-.menu{
-display:flex;
-gap:25px;
+/* 메인 영역 */
+.main{
+  max-width:500px;
+  margin:auto;
+  padding:20px;
+  text-align:center;
 }
 
-.menu a{
-color:#333;
-text-decoration:none;
-font-size:15px;
-transition:0.3s;
-}
-
-.menu a:hover{
-color:#c9a96e;
-}
-
-/* 메인 */
-
-header{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:40px;
-background:
-linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.85)),
-url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80");
-background-size:cover;
-background-position:center;
-}
-
-h1{
-font-size:70px;
-margin-bottom:15px;
-letter-spacing:3px;
-color:#c9a96e;
-}
-
-.subtext{
-font-size:22px;
-margin-bottom:25px;
-color:#333;
-}
-
+/* 소개 문구 */
 .desc{
-max-width:750px;
-margin-bottom:45px;
-color:#444;
-font-size:18px;
-line-height:1.8;
+  margin-bottom:30px;
+  font-size:14px;
+  color:#666;
 }
 
-/* 중앙 메뉴 */
-
-.service-menu{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-max-width:900px;
-width:100%;
+/* 버튼 카드 */
+.card{
+  background:#dfe3e8;
+  border-radius:20px;
+  padding:25px;
+  margin-bottom:20px;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
 }
 
-.service{
-display:block;
-text-decoration:none;
-color:#222;
-background:#e9ecef;
-border:1px solid rgba(0,0,0,0.08);
-padding:30px;
-border-radius:12px;
-font-size:22px;
-transition:0.3s;
-text-align:center;
-font-weight:700;
-}
-
-.service:visited{
-color:#222;
-}
-
-.service:hover{
-background:#c9a96e;
-color:#111;
-}
-
-/* 모바일 */
-
-@media(max-width:800px){
-
-.service-menu{
-grid-template-columns:1fr;
-max-width:420px;
-}
-
-h1{
-font-size:40px;
-}
-
-.menu{
-display:none;
-}
-
-.subtext{
-font-size:18px;
-}
-
-.desc{
-font-size:16px;
-}
-
+.card:hover{
+  transform:translateY(-3px);
+  background:#d4d9df;
 }
 
 </style>
@@ -166,53 +89,26 @@ font-size:16px;
 
 <body>
 
+<!-- 상단 -->
 <nav>
-<div class="nav-inner">
-
-<a href="index.html" class="logo">이룸</a>
-
-<div class="menu">
-<a href="phone.html">휴대폰개통</a>
-<a href="#">여행</a>
-<a href="notary.html">공증·인증</a>
-<a href="policy.html">정책자금</a>
-<a href="tax.html">세금진단</a>
-<a href="auction.html">부동산경매</a>
-</div>
-
-</div>
+  <div class="nav-inner">
+    <a href="#" class="logo">이룸</a>
+  </div>
 </nav>
 
-<header>
+<!-- 메인 -->
+<div class="main">
 
-<h1>이룸</h1>
+  <div class="desc">
+    법률·행정 통합 서비스입니다.
+  </div>
 
-<div class="subtext">
-행정 · 통신 · 공증 서비스를 한곳에서
-</div>
-
-<div class="desc">
-정책자금 상담, 휴대폰 개통, 공증·인증, 여행, 세금진단, 부동산 경매 관련 서비스를  
-복잡하지 않게 한곳에서 확인하고 진행할 수 있도록 돕는 통합 서비스입니다.
-</div>
-
-<div class="service-menu">
-
-<a href="phone.html" class="service">휴대폰개통</a>
-
-<a href="#" class="service">여행</a>
-
-<a href="notary.html" class="service">공증·인증</a>
-
-<a href="policy.html" class="service">정책자금</a>
-
-<a href="tax.html" class="service">세금진단</a>
-
-<a href="auction.html" class="service">부동산경매</a>
+  <div class="card">휴대폰개통</div>
+  <div class="card">여행</div>
+  <div class="card">공증 · 인증</div>
+  <div class="card">정책자금</div>
 
 </div>
-
-</header>
 
 </body>
 </html>
