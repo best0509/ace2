@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이룸</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+}
+
+body{
+  background:#f5f6f8;
+  color:#222;
+}
+
+/* 상단 메뉴 */
+nav{
+  position:sticky;
+  top:0;
+  width:100%;
+  background:#ffffff;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  z-index:1000;
+}
+
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  min-height:72px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  color:#c9a96e;
+  text-decoration:none;
+}
+
+.menu{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
+}
+
+.menu a{
+  color:#333;
+  text-decoration:none;
+  font-size:15px;
+  transition:0.3s;
+}
+
+.menu a:hover{
+  color:#c9a96e;
+}
+
+/* 메인 */
+header{
+  min-height:calc(100svh - 72px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:50px 20px 60px;
+  background:
+  linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.85)),
+  url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80");
+  background-size:cover;
+  background-position:center;
+}
+
+h1{
+  font-size:70px;
+  margin-bottom:15px;
+  letter-spacing:3px;
+  color:#c9a96e;
+}
+
+.subtext{
+  font-size:22px;
+  margin-bottom:25px;
+}
+
+.desc{
+  max-width:750px;
+  margin-bottom:45px;
+  font-size:18px;
+  line-height:1.8;
+}
+
+/* 서비스 */
+.service-menu{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  max-width:900px;
+  width:100%;
+}
+
+.service{
+  display:block;
+  text-decoration:none;
+  color:#222;
+  background:#e9ecef;
+  border-radius:16px;
+  padding:30px;
+  font-size:22px;
+  font-weight:700;
+  text-align:center;
+  transition:0.3s;
+}
+
+.service:hover{
+  background:#c9a96e;
+}
+
+/* 모바일 */
+@media(max-width:800px){
+
+  .menu{
+    display:none;
+  }
+
+  header{
+    padding:35px 16px 45px;
+  }
+
+  .service-menu{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    font-size:40px;
+  }
+
+  .service{
+    font-size:18px;
+    padding:24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">이룸</a>
+
+    <div class="menu">
+      <a href="phone.html">휴대폰개통</a>
+      <a href="auction.html">부동산경매</a>
+      <a href="notary.html">공증·인증</a>
+      <a href="travel.html">여행</a>
+      <a href="policy.html">정책자금</a>
+      <a href="tax.html">세금진단</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+
+  <h1>이룸</h1>
+
+  <div class="subtext">
+    행정 · 통신 · 공증 서비스를 한곳에서
+  </div>
+
+  <div class="desc">
+    정책자금 상담, 휴대폰 개통, 공증·인증, 여행, 세금진단, 부동산 경매 관련 서비스를
+    한곳에서 쉽게 이용할 수 있는 통합 서비스입니다.
+  </div>
+
+  <div class="service-menu">
+    <a href="phone.html" class="service">휴대폰개통</a>
+    <a href="auction.html" class="service">부동산경매</a>
+    <a href="notary.html" class="service">공증·인증</a>
+    <a href="travel.html" class="service">여행</a>
+    <a href="policy.html" class="service">정책자금</a>
+    <a href="tax.html" class="service">세금진단</a>
+  </div>
+
+</header>
+
+</body>
+</html>
