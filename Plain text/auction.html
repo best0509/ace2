@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통합 경매 분석 | 이룸</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+}
+
+body{
+background:#f5f6f8;
+color:#222;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#fff;
+border-bottom:1px solid rgba(0,0,0,0.08);
+z-index:1000;
+}
+
+.nav-inner{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#c9a96e;
+text-decoration:none;
+}
+
+.menu{
+display:flex;
+gap:20px;
+}
+
+.menu a{
+text-decoration:none;
+color:#333;
+font-size:15px;
+}
+
+.menu a:hover{
+color:#c9a96e;
+}
+
+main{
+max-width:1100px;
+margin:auto;
+padding:120px 20px 70px;
+}
+
+.page-title{
+font-size:42px;
+text-align:center;
+margin-bottom:12px;
+color:#c9a96e;
+}
+
+.page-desc{
+text-align:center;
+max-width:820px;
+margin:0 auto 40px;
+font-size:17px;
+line-height:1.7;
+color:#444;
+}
+
+.box{
+background:#fff;
+border:1px solid rgba(0,0,0,0.08);
+border-radius:16px;
+padding:28px;
+margin-bottom:24px;
+box-shadow:0 8px 20px rgba(0,0,0,0.04);
+}
+
+.box-title{
+font-size:24px;
+margin-bottom:18px;
+color:#222;
+}
+
+/* 한줄 입력 */
+
+.one-line{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.case-input{
+height:50px;
+padding:0 12px;
+font-size:17px;
+border:1px solid #d8dce2;
+border-radius:10px;
+outline:none;
+}
+
+.case-input:focus{
+border-color:#c9a96e;
+}
+
+.year{
+width:90px;
+}
+
+.number{
+width:140px;
+}
+
+.item{
+width:120px;
+}
+
+.label{
+font-size:18px;
+font-weight:700;
+color:#333;
+}
+
+.search-btn{
+height:50px;
+padding:0 22px;
+border:none;
+border-radius:10px;
+background:#c9a96e;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+}
+
+.search-btn:hover{
+opacity:0.95;
+}
+
+.guide{
+margin-top:12px;
+text-align:center;
+font-size:14px;
+color:#666;
+}
+
+.result-area{
+display:none;
+margin-top:30px;
+}
+
+/* 결과 카드 */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+}
+
+.card{
+background:#f8f9fb;
+border-radius:12px;
+padding:18px;
+}
+
+.card h3{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.card p{
+font-size:18px;
+font-weight:bold;
+}
+
+@media(max-width:800px){
+
+.menu{
+display:none;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.one-line{
+flex-direction:column;
+}
+
+.year,
+.number,
+.item,
+.search-btn{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+
+<a href="index.html" class="logo">이룸</a>
+
+<div class="menu">
+<a href="index.html">홈</a>
+<a href="auction.html">부동산경매</a>
+<a href="policy.html">정책자금</a>
+<a href="tax.html">세금진단</a>
+</div>
+
+</div>
+</nav>
+
+<main>
+
+<h1 class="page-title">통합 경매 분석</h1>
+
+<p class="page-desc">
+사건번호를 입력하면 경매 기본정보와 분석 결과를 확인할 수 있습니다.
+</p>
+
+<section class="box">
+
+<h2 class="box-title">사건번호 입력</h2>
+
+<div class="one-line">
+
+<input id="caseYear" class="case-input year" placeholder="2025">
+
+<span class="label">타경</span>
+
+<input id="caseNumber" class="case-input number" placeholder="12345">
+
+<span class="label">물건번호</span>
+
+<input id="itemNumber" class="case-input item" placeholder="선택">
+
+<button class="search-btn" onclick="runAnalysis()">통합 분석</button>
+
+</div>
+
+<div class="guide">
+연도와 사건번호는 필수 입력입니다. 물건번호는 있는 경우만 입력합니다.
+</div>
+
+</section>
+
+<div id="resultArea" class="result-area">
+
+<section class="box">
+
+<h2 class="box-title">경매 기본정보</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>사건번호</h3>
+<p id="outCaseNumber">-</p>
+</div>
+
+<div class="card">
+<h3>물건번호</h3>
+<p id="outItemNumber">-</p>
+</div>
+
+<div class="card">
+<h3>법원</h3>
+<p>수원지방법원</p>
+</div>
+
+<div class="card">
+<h3>감정가</h3>
+<p>5억 2,000만원</p>
+</div>
+
+<div class="card">
+<h3>최저가</h3>
+<p>3억 6,400만원</p>
+</div>
+
+<div class="card">
+<h3>입찰기일</h3>
+<p>2026-04-15</p>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+<script>
+
+function onlyNumber(value){
+return value.replace(/[^0-9]/g,'');
+}
+
+document.getElementById("caseYear").addEventListener("input",function(){
+this.value = onlyNumber(this.value);
+});
+
+document.getElementById("caseNumber").addEventListener("input",function(){
+this.value = onlyNumber(this.value);
+});
+
+document.getElementById("itemNumber").addEventListener("input",function(){
+this.value = onlyNumber(this.value);
+});
+
+function runAnalysis(){
+
+const year = document.getElementById("caseYear").value.trim();
+const number = document.getElementById("caseNumber").value.trim();
+const item = document.getElementById("itemNumber").value.trim();
+
+if(year=="" || number==""){
+alert("연도와 사건번호를 입력해주세요.");
+return;
+}
+
+const caseNum = year + "타경" + number;
+
+document.getElementById("outCaseNumber").innerText = caseNum;
+
+document.getElementById("outItemNumber").innerText =
+item=="" ? "없음" : item;
+
+document.getElementById("resultArea").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
