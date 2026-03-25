@@ -1,216 +1,195 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>운전면허 공·인증 필요서류</title>
+<title>이룸</title>
 
 <style>
-
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
 }
 
 body{
-background:#f5f6f8;
-color:#222;
-padding:30px 15px;
+  background:#f5f6f8;
+  color:#222;
 }
 
-.container{
-max-width:1000px;
-margin:0 auto;
+/* 상단 메뉴 */
+nav{
+  position:sticky;
+  top:0;
+  width:100%;
+  background:#ffffff;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  z-index:1000;
 }
 
-.title-box{
-background:#fff;
-border-radius:16px;
-padding:24px;
-margin-bottom:20px;
-box-shadow:0 4px 14px rgba(0,0,0,0.08);
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  min-height:72px;
 }
 
-.title-box h1{
-font-size:30px;
-color:#2d6cdf;
-margin-bottom:10px;
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  color:#c9a96e;
+  text-decoration:none;
 }
 
-.title-box p{
-font-size:16px;
-color:#555;
-line-height:1.7;
+.menu{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
 }
 
-.form-box{
-background:#fff;
-border-radius:16px;
-padding:24px;
-box-shadow:0 4px 14px rgba(0,0,0,0.08);
+.menu a{
+  color:#333;
+  text-decoration:none;
+  font-size:15px;
+  transition:0.3s;
 }
 
-.section-title{
-font-size:22px;
-font-weight:700;
-color:#2d6cdf;
-margin-bottom:18px;
+.menu a:hover{
+  color:#c9a96e;
 }
 
-.doc-row{
-display:grid;
-grid-template-columns:1.4fr 1fr;
-gap:16px;
-align-items:center;
-padding:14px 0;
-border-bottom:1px solid #e5e7eb;
+/* 메인 */
+header{
+  min-height:calc(100svh - 72px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:50px 20px 60px;
+  background:
+  linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.85)),
+  url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80");
+  background-size:cover;
+  background-position:center;
 }
 
-.doc-row:last-child{
-border-bottom:none;
+h1{
+  font-size:70px;
+  margin-bottom:15px;
+  letter-spacing:3px;
+  color:#c9a96e;
 }
 
-.doc-label{
-font-size:16px;
-line-height:1.5;
+.subtext{
+  font-size:22px;
+  margin-bottom:25px;
 }
 
-.doc-label span{
-display:inline-block;
-min-width:28px;
-font-weight:700;
-color:#2d6cdf;
+.desc{
+  max-width:750px;
+  margin-bottom:45px;
+  font-size:18px;
+  line-height:1.8;
 }
 
-.text-input,
-.file-input,
-.textarea{
-width:100%;
-padding:12px 14px;
-border:1px solid #cfd4dc;
-border-radius:10px;
-font-size:15px;
+/* 서비스 */
+.service-menu{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  max-width:900px;
+  width:100%;
 }
 
-.textarea{
-min-height:100px;
-resize:vertical;
+.service{
+  display:block;
+  text-decoration:none;
+  color:#222;
+  background:#e9ecef;
+  border-radius:16px;
+  padding:30px;
+  font-size:22px;
+  font-weight:700;
+  text-align:center;
+  transition:0.3s;
 }
 
-.note{
-margin-top:18px;
-background:#eef4ff;
-border:1px solid #d6e4ff;
-border-radius:12px;
-padding:16px;
-font-size:14px;
-line-height:1.7;
+.service:hover{
+  background:#c9a96e;
 }
 
-.btn-wrap{
-margin-top:30px;
-text-align:center;
+/* 모바일 */
+@media(max-width:800px){
+
+  .menu{
+    display:none;
+  }
+
+  header{
+    padding:35px 16px 45px;
+  }
+
+  .service-menu{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    font-size:40px;
+  }
+
+  .service{
+    font-size:18px;
+    padding:24px;
+  }
 }
-
-.submit-btn{
-background:#2d6cdf;
-color:#fff;
-border:none;
-border-radius:10px;
-padding:16px 32px;
-font-size:18px;
-font-weight:700;
-cursor:pointer;
-}
-
-.submit-btn:hover{
-background:#1f56b8;
-}
-
-@media(max-width:768px){
-
-.doc-row{
-grid-template-columns:1fr;
-}
-
-.title-box h1{
-font-size:24px;
-}
-
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">이룸</a>
 
-<div class="title-box">
-<h1>운전면허 공·인증 필요서류</h1>
+    <div class="menu">
+      <a href="phone.html">휴대폰개통</a>
+      <a href="auction.html">부동산경매</a>
+      <a href="notary.html">공증·인증</a>
+      <a href="auction.html">여행</a>
+      <a href="policy.html">정책자금</a>
+      <a href="policy.html">세금진단</a>
+    </div>
+  </div>
+</nav>
 
-<p>
-운전면허 공증 및 인증 신청을 위해 아래 정보를 입력하고
-필요 서류를 업로드해 주세요.
-</p>
+<header>
 
-</div>
+  <h1>이룸</h1>
 
-<div class="form-box">
+  <div class="subtext">
+    행정 · 통신 · 공증 서비스를 한곳에서
+  </div>
 
-<div class="section-title">
-필요서류 입력 및 업로드
-</div>
+  <div class="desc">
+    정책자금 상담, 휴대폰 개통, 공증·인증, 여행, 세금진단, 부동산 경매 관련 서비스를
+    한곳에서 쉽게 이용할 수 있는 통합 서비스입니다.
+  </div>
 
-<div class="doc-row">
-<div class="doc-label"><span>1.</span> 신청인 성명</div>
-<input type="text" class="text-input">
-</div>
+  <div class="service-menu">
+    <a href="phone.html" class="service">휴대폰개통</a>
+    <a href="auction.html" class="service">부동산경매</a>
+    <a href="notary.html" class="service">공증·인증</a>
+    <a href="auction.html" class="service">여행</a>
+    <a href="policy.html" class="service">정책자금</a>
+    <a href="policy.html" class="service">세금진단</a>
+  </div>
 
-<div class="doc-row">
-<div class="doc-label"><span>2.</span> 신청인 연락처</div>
-<input type="text" class="text-input">
-</div>
-
-<div class="doc-row">
-<div class="doc-label"><span>3.</span> 신청인 주소</div>
-<textarea class="textarea"></textarea>
-</div>
-
-<div class="doc-row">
-<div class="doc-label"><span>4.</span> 운전면허증 앞면</div>
-<input type="file" class="file-input">
-</div>
-
-<div class="doc-row">
-<div class="doc-label"><span>5.</span> 운전면허증 뒷면</div>
-<input type="file" class="file-input">
-</div>
-
-<div class="doc-row">
-<div class="doc-label"><span>6.</span> 여권 앞면</div>
-<input type="file" class="file-input">
-</div>
-
-<div class="doc-row">
-<div class="doc-label"><span>7.</span> 기타 추가 서류</div>
-<input type="file" class="file-input" multiple>
-</div>
-
-<div class="note">
-※ 업로드 가능 파일 형식 : JPG, PNG, PDF<br>
-※ 여러 장의 서류가 있는 경우 하나의 PDF로 정리하거나 여러 파일을 업로드해 주세요.
-</div>
-
-<div class="btn-wrap">
-<button class="submit-btn">신청하기</button>
-</div>
-
-</div>
-
-</div>
+</header>
 
 </body>
 </html>
