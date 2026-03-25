@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경매 물건 분석</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f3f4f6;
+padding:40px;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+label{
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:5px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+background:#f9fafb;
+padding:15px;
+border-radius:6px;
+white-space:pre-wrap;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<h2>경매 물건 분석</h2>
+
+<label>사건번호</label>
+<input id="caseNumber" placeholder="예: 2023타경12345">
+
+<label>물건번호</label>
+<input id="itemNumber" placeholder="예: 1">
+
+<button onclick="sendAnalysis()">분석하기</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+
+<script>
+
+async function sendAnalysis(){
+
+const caseNumber = document.getElementById("caseNumber").value;
+const itemNumber = document.getElementById("itemNumber").value;
+
+if(!caseNumber){
+alert("사건번호를 입력해주세요.");
+return;
+}
+
+try{
+
+const response = await fetch("/api/auction-analysis",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+caseNumber:caseNumber,
+itemNumber:itemNumber
+})
+});
+
+const data = await response.json();
+
+document.getElementById("result").innerText =
+JSON.stringify(data,null,2);
+
+}catch(e){
+
+document.getElementById("result").innerText =
+"서버 연결 실패";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
