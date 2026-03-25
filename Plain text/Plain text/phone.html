@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>휴대폰개통 | 이룸</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+}
+
+body{
+background:#0f1115;
+color:#fff;
+}
+
+.hero{
+min-height:100vh;
+padding:40px 20px;
+background:
+linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.78)),
+url("https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.hero-inner{
+width:100%;
+max-width:1100px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:36px;
+}
+
+.brand{
+color:#d8b56a;
+font-size:15px;
+letter-spacing:2px;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+h1{
+font-size:45px;
+margin-bottom:15px;
+}
+
+.desc{
+color:#ddd;
+font-size:17px;
+line-height:1.8;
+margin-bottom:25px;
+}
+
+.form-card{
+background:rgba(20,24,32,0.9);
+border-radius:20px;
+padding:30px;
+}
+
+.form-card h2{
+font-size:26px;
+margin-bottom:10px;
+}
+
+.step{
+margin-bottom:20px;
+}
+
+.step-title{
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option-group{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.option-btn{
+height:48px;
+border:none;
+border-radius:10px;
+background:rgba(255,255,255,0.1);
+color:#fff;
+cursor:pointer;
+}
+
+.option-btn.active{
+background:#f0c76a;
+color:#111;
+font-weight:bold;
+}
+
+.input{
+width:100%;
+height:45px;
+border:none;
+border-radius:8px;
+padding:10px;
+background:rgba(255,255,255,0.1);
+color:#fff;
+margin-bottom:15px;
+}
+
+.btn{
+width:100%;
+height:48px;
+border:none;
+border-radius:10px;
+background:#f0c76a;
+color:#111;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+}
+
+.result{
+display:none;
+margin-top:20px;
+padding:20px;
+background:rgba(255,255,255,0.05);
+border-radius:12px;
+}
+
+.result h3{
+color:#f0c76a;
+margin-bottom:10px;
+}
+
+.result-main{
+font-size:24px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.system{
+display:block;
+margin-top:10px;
+text-align:center;
+padding:12px;
+background:#f0c76a;
+color:#111;
+border-radius:10px;
+font-weight:bold;
+text-decoration:none;
+}
+
+@media(max-width:900px){
+.hero-inner{
+grid-template-columns:1fr;
+}
+h1{
+font-size:34px;
+}
+.option-group{
+grid-template-columns:1fr;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<div>
+
+<div class="brand">이룸</div>
+
+<h1>휴대폰 개통 자동 분류</h1>
+
+<div class="desc">
+내국인/외국인 여부와 개통 유형을 선택하면
+상황에 맞는 개통 방향을 자동으로 안내합니다.
+</div>
+
+</div>
+
+<div class="form-card">
+
+<h2>개통 유형 선택</h2>
+
+<div class="step">
+<div class="step-title">1. 고객 구분</div>
+
+<div class="option-group">
+<button class="option-btn" data-group="customer" data-value="내국인">내국인</button>
+<button class="option-btn" data-group="customer" data-value="외국인">외국인</button>
+<button class="option-btn" data-group="customer" data-value="상담">상담필요</button>
+</div>
+</div>
+
+<div class="step">
+<div class="step-title">2. 개통 유형</div>
+
+<div class="option-group">
+<button class="option-btn" data-group="type" data-value="신규">신규가입</button>
+<button class="option-btn" data-group="type" data-value="번호이동">번호이동</button>
+<button class="option-btn" data-group="type" data-value="기기변경">기기변경</button>
+</div>
+</div>
+
+<div class="step">
+<div class="step-title">3. 희망 방식</div>
+
+<div class="option-group">
+<button class="option-btn" data-group="plan" data-value="선불">선불</button>
+<button class="option-btn" data-group="plan" data-value="후불">후불</button>
+<button class="option-btn" data-group="plan" data-value="상담">상담후결정</button>
+</div>
+</div>
+
+<input class="input" id="phone" placeholder="연락처 입력">
+
+<button class="btn" onclick="analyze()">개통 방향 확인</button>
+
+<div class="result" id="result">
+
+<h3>자동 분류 결과</h3>
+
+<div class="result-main" id="main"></div>
+
+<div id="desc"></div>
+
+<a class="system" id="system" href="#">개통 진행하기</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+let selected={};
+
+document.querySelectorAll(".option-btn").forEach(function(btn){
+
+btn.onclick=function(){
+
+let group=this.dataset.group;
+
+document.querySelectorAll('[data-group="'+group+'"]').forEach(function(b){
+b.classList.remove("active");
+});
+
+this.classList.add("active");
+
+selected[group]=this.dataset.value;
+
+}
+
+});
+
+function analyze(){
+
+let phone=document.getElementById("phone").value;
+
+if(!selected.customer || !selected.type || !selected.plan){
+alert("모든 항목을 선택해주세요");
+return;
+}
+
+if(phone==""){
+alert("연락처 입력해주세요");
+return;
+}
+
+let main="";
+let desc="";
+
+if(selected.customer=="내국인" && selected.plan=="후불"){
+main="내국인 후불 개통 추천";
+desc="일반적인 후불 개통 절차로 진행 가능합니다.";
+}
+
+else if(selected.customer=="외국인" && selected.plan=="선불"){
+main="외국인 선불 유심 추천";
+desc="가장 빠르게 개통 가능한 방식입니다.";
+}
+
+else{
+main="맞춤 개통 상담 추천";
+desc="선택 조건에 따라 상담 후 진행하는 것이 좋습니다.";
+}
+
+document.getElementById("main").innerHTML=main;
+document.getElementById("desc").innerHTML=desc;
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("system").href="https://개통시스템주소";
+
+}
+
+</script>
+
+</body>
+</html>
